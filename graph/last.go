@@ -10,6 +10,7 @@ import (
 	"github.com/open-falcon/sdk/requests"
 )
 
+// sdk,保存query地址
 var GraphLastUrl = "http://127.0.0.1:9966/graph/last"
 
 func Last(endpoint, counter string) (val float64, ts int64, err error) {
@@ -50,6 +51,7 @@ func Last(endpoint, counter string) (val float64, ts int64, err error) {
 	return float64(v.Value), v.Timestamp, nil
 }
 
+// 通过query接口批量获取指标最新值
 func Lasts(params []*model.GraphLastParam) ([]*model.GraphLastResp, error) {
 	if len(params) == 0 {
 		return []*model.GraphLastResp{}, nil

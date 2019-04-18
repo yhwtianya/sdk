@@ -11,6 +11,7 @@ import (
 	"github.com/open-falcon/common/model"
 )
 
+// 将监控数据上报到transfer
 func PostPush(L []*model.JsonMetaData) error {
 	bs, err := json.Marshal(L)
 	if err != nil {

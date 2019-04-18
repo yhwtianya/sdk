@@ -6,6 +6,7 @@ import (
 	"github.com/open-falcon/common/model"
 )
 
+// 组装model.JsonMetaData实例
 func MakeMetaData(endpoint, metric, tags string, val interface{}, counterType string, step_and_ts ...int64) *model.JsonMetaData {
 	md := model.JsonMetaData{
 		Endpoint:    endpoint,
@@ -48,7 +49,9 @@ func PushCounter(endpoint, metric, tags string, val interface{}, step_and_ts ...
 	MetaDataQueue.PushFront(md)
 }
 
+// 将数据插入发送队列首部，然后由sender将队列中的数据送到transfer
 func Push(endpoint, metric, tags string, val interface{}, counterType string, step_and_ts ...int64) {
 	md := MakeMetaData(endpoint, metric, tags, val, counterType, step_and_ts...)
+	// 新数据在首部
 	MetaDataQueue.PushFront(md)
 }

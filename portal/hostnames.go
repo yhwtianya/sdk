@@ -10,11 +10,13 @@ import (
 
 var HostnamesUrl = "http://127.0.0.1:5050/api/group/%s/hosts.json"
 
+// HostnamesUrl返回结果数据结构
 type hostnamesDto struct {
 	Msg  string   `json:"msg"`
-	Data []string `json:"data"`
+	Data []string `json:"data"` //主机名列表
 }
 
+// 获取对应组下的主机列表
 func Hostnames(groupName string, hostnamesUrl ...string) ([]string, error) {
 	pattern := HostnamesUrl
 	if len(hostnamesUrl) > 0 {
